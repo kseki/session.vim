@@ -33,3 +33,40 @@ function! s:files() abort
 
   return readdir(session_path, Filter)
 endfunction
+
+let s:session_list_buffer = 'SESSIONS'
+
+function! session#sessions() abort
+  let files = s:files()
+  if empty(files)
+    return
+  end
+
+  if bufexists(s:session_list_buffer)
+    let winid = bufwinid(s:session_list_buffer)
+    if winid isnot# -1
+      call win_gotoid(winid)
+    else
+      execute 'sbuffer' s:session_list_buffer
+    endif
+
+  else
+    execute 'new' s:session_list_buffer
+
+    set buftype=nofile
+
+    nnoremap <silent> <buffer>
+      \ <Plug>(session-open)
+      \ :<C-u>bufwinid!<CR>
+
+    nnoremap <silent> <buffer>
+      \ <Plug>(session-open)
+      \ :<C-u>call session#load_session(trim(getline('.')))<CR>
+
+    nmpa <buffer> q <Plug>(session-close)
+    nmpa <buffer> <CR> <Plug>(session-open)
+  endif
+
+  %delete _
+  call setline(1, files)
+endfunction
