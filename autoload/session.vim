@@ -1,7 +1,7 @@
 let s:sep = fnamemodify('.', ':p')[-1:]
 
 if !exists('g:session_path')
-  let g:session_path = '~/.vim/tmp'
+  let g:session_path = $HOME . s:sep . '.vim/tmp'
 endif
 
 function! session#create_session(file) abort
@@ -63,8 +63,8 @@ function! session#sessions() abort
       \ <Plug>(session-open)
       \ :<C-u>call session#load_session(trim(getline('.')))<CR>
 
-    nmpa <buffer> q <Plug>(session-close)
-    nmpa <buffer> <CR> <Plug>(session-open)
+    nmap <buffer> q <Plug>(session-close)
+    nmap <buffer> <CR> <Plug>(session-open)
   endif
 
   %delete _
