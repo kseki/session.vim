@@ -57,7 +57,7 @@ https://github.com/user/session.vim
 変数						*session-variables*
 
 g:session_path					*g:session_path*
-	既定値: = "#{$HOME}/.vim/tmp"
+	既定値: = "#{$HOME}/.vim/sessions"
 セッションを保存するファイルパスを設定します。
 
 ------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ g:session_path					*g:session_path*
 
 
 :SessionCreate {name}				*:SessionCreate*
-	セッションを{name}で保存します。	
+	セッションを{name}で保存します。
 
 
 ------------------------------------------------------------------------------

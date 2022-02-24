@@ -1,7 +1,7 @@
 let s:sep = fnamemodify('.', ':p')[-1:]
 
 if !exists('g:session_path')
-  let g:session_path = $HOME . s:sep . '.vim/tmp'
+  let g:session_path = $HOME . s:sep . '.vim/sessions'
 endif
 
 function! session#create_session(file) abort
